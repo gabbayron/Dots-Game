@@ -1,0 +1,13 @@
+h1 {
+    color: mediumseagreen;
+}
+body{
+    background-color: dimgrey;
+    text-align: center;
+}
+
+canvas {
+    margin: 60px 0;
+    border:1px solid;
+    box-shadow: 2px 2px 10px 2px
+}
