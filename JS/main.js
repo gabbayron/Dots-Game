@@ -27,7 +27,7 @@ document.addEventListener('keydown', movePlayer)
 function movePlayer(e) {
     if (e.keyCode === 40 && (canvas.height - 15) > yPlayer) {
         // Clear 
-        ctx.clearRect(0, 0, canvas.width, canvas.height);
+        clearBoard();
         // Draw Mine 
         drawMine()
         // Draw player
@@ -39,7 +39,7 @@ function movePlayer(e) {
     }
     else if (e.keyCode === 39 && (canvas.width - 15) > xPlayer) {
         // Clear 
-        ctx.clearRect(0, 0, canvas.width, canvas.height);
+        clearBoard();
         // Draw Mine
         drawMine()
         // Draw player
@@ -51,7 +51,7 @@ function movePlayer(e) {
     }
     else if (e.keyCode === 38 && (yPlayer > 15)) {
         // Clear 
-        ctx.clearRect(0, 0, canvas.width, canvas.height);
+        clearBoard();
         // Draw Mine
         drawMine()
         // Draw Player
@@ -63,7 +63,7 @@ function movePlayer(e) {
     }
     else if (e.keyCode === 37 && xPlayer > 15) {
         // Clear 
-        ctx.clearRect(0, 0, canvas.width, canvas.height);
+        clearBoard();
         // Draw Mine
         drawMine()
         // Draw Player
@@ -76,13 +76,23 @@ function movePlayer(e) {
     setTimeout(checkOverlap, 50)
 }
 
+function clearBoard() {
+    ctx.clearRect(0, 0, canvas.width, canvas.height);
+}
 
 // Mine Creation
+
 var xMine = 0
 var yMine = 0
-function createMine() {
 
-    generate()
+function generateMineXY() {
+    xMine = 15 * (Math.ceil(Math.random() * 100))
+    yMine = 15 * Math.ceil(Math.random() * 100)
+}
+
+function createMine() {
+    generateMineXY()
+
     if (xMine < (canvas.width - 15) && yMine < (canvas.height - 15)) {
         ctx.beginPath();
         ctx.arc(xMine, yMine, 15, 0, 2 * Math.PI);
@@ -108,7 +118,4 @@ function checkOverlap() {
     }
 }
 
-function generate() {
-    xMine = 15 * (Math.ceil(Math.random() * 60))
-    yMine = 15 * Math.ceil(Math.random() * 15)
-}
+
