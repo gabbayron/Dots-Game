@@ -110,12 +110,38 @@ function drawMine() {
     ctx.fillStyle = 'red'
     ctx.fill();
 }
-
+var record = 0
+var content = document.getElementById('content')
+var h1Scored = document.getElementById('score')
 function checkOverlap() {
     if (xMine === xPlayer && yMine === yPlayer) {
         alert('U Landed On A Mine ')
         createMine()
+        record++
+        h1Scored.textContent = `your score is ${record}`
+        content.appendChild(h1Scored)
+        storeData()
     }
 }
 
+function storeData() {
+    localStorage.setItem('score', JSON.stringify(record))
+}
 
+window.onload = function (e) {
+    let temp = localStorage.getItem('score')
+    if (!temp) {
+        return
+    }
+    record = JSON.parse(temp)
+    h1Scored.textContent = `your score is ${record}`
+    content.appendChild(this.h1Scored)
+}
+
+const btn = document.getElementById('btn')
+btn.onclick = function (e) {
+    record = 0
+    localStorage.setItem('score', record)
+    h1Scored.textContent = `your score is ${record}`
+    content.appendChild(h1Scored)
+}

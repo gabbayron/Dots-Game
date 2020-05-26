@@ -11,3 +11,8 @@ canvas {
     border:1px solid;
     box-shadow: 2px 2px 10px 2px
 }
+
+button {
+    font-size: 30px;
+    border-radius: 35%;
+}
